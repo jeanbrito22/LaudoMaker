@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Laudo Maker - Cadastrar cliente</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap-theme.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrapValidator.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" id="navI" href="#">Cadastro de clientes</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Inicio</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <div class="page-header" align="center">
+        <h1 class="text-primary">Laudo maker <small class="text-info">é um sistema para análises entomológicas em produtos alimentícios. Com ele você ganha produtividade em suas análises e garante laudos objetivos e eficientes.</small></h1>
+    </div>
+
+        <div class="container">
+            <form class="well form-horizontal" action="/cadastro-success" method="POST" id="info_form">
+            <fieldset>
+                <!-- Nome do form -->
+                <legend  align="center">Informações do cliente.</legend>
+                
+                <!-- Nome do cliente -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Nome do Cliente</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input  name="cliente"  placeholder="Nome do cliente" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">CNPJ do Cliente</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input  name="cnpj" placeholder="CNPJ do Cliente" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-Mail -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">E-Mail</label>  
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input name="email" placeholder="Endereço de E-Mail" class="form-control"  type="text">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Endereço -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Endereço</label>  
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input name="endereco" placeholder="Endereço" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estado-->
+                <div class="form-group"> 
+                    <label class="col-md-4 control-label">Estado</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                            <select name="estado" class="form-control selectpicker">
+                                <option value="">Selecione a UF</option>
+                                {% for uf in ufs %}
+                                <option>{{uf}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CEP -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">CEP</label>  
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input name="cep" placeholder="CEP" class="form-control"  type="text">
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button id="enviar" type="submit" class="btn btn-warning" >Enviar <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+            </div>
+
+            </fieldset>
+            </form>
+        </div>
+
+
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.1.1.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrapValidator.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/cadastro-script.js')}}"></script>
+
+    </div>
+</body>
+
+</html>
