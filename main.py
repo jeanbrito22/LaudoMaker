@@ -24,6 +24,11 @@ def getFormLaudo():
     conservacaoEmbalagem = 'N/A'
     opcaoPragas = request.form['Havia_pragas']
     nivelIdentificacao = 'N/A'
+    classePraga = 'N/A'
+    ordemPraga = 'N/A'
+    familiaPraga = 'N/A'
+    generoPraga = 'N/A'
+    especiePraga = 'N/A'
     nomePopular = 'N/A'
     conclusao = request.form['comentario']
 
@@ -35,8 +40,25 @@ def getFormLaudo():
 
     if opcaoPragas == 'Sim':
         nivelIdentificacao = request.form['identificação_pragas']
+
         if nivelIdentificacao == 'Nome popular':
             nomePopular = request.form['nome_praga']
+        
+        elif nivelIdentificacao == 'Especie':
+            especiePraga = request.form['especie_praga']
+        
+        elif nivelIdentificacao == 'Genero':
+            generoPraga = request.form['genero_praga']
+
+        elif nivelIdentificacao == 'Familia':
+            familiaPraga = request.form['familia_praga']
+
+        elif nivelIdentificacao == 'Ordem':
+            ordemPraga = request.form['ordem_praga']
+
+        else:
+            classePraga = request.form['classe_praga']
+
 
     inserir_laudo(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, conservacaoEmbalagem, opcaoPragas, nivelIdentificacao, nomePopular, conclusao)
 

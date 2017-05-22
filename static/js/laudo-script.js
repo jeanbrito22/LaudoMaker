@@ -14,13 +14,44 @@ $(document).ready(function(){
 		$("#sim_praga, #nao_praga").click(function (){
 			if(this.id =='sim_praga'){
 				$("#info-pragas").show(500);
+				$("#text-name, #text-species, #text-gender").hide();
+				$("#text-family, #text-order, #text-class").hide();
 
-				$("#text-name").hide();
 				$("#classe, #ordem, #familia, #genero, #especie, #popular-name").click(function (){
 					if(this.id == 'popular-name'){
 						$("#text-name").show(500);
 					}else{
 						$("#text-name").hide(500);
+					}
+
+					if (this.id == 'especie') {
+						$("#text-species").show(500);
+					}else{
+						$("#text-species").hide(500);
+					}
+
+					if (this.id == 'genero'){
+						$("#text-gender").show(500);
+					}else{
+						$("#text-gender").hide(500);
+					}
+
+					if (this.id == 'familia'){
+						$("#text-family").show(500);
+					}else{
+						$("#text-family").hide(500);
+					}
+
+					if (this.id == 'ordem'){
+						$("#text-order").show(500);
+					}else{
+						$("#text-order").hide(500);
+					}
+
+					if (this.id == 'classe'){
+						$("#text-class").show(500);
+					}else{
+						$("#text-class").hide(500);
 					}
 				});
 
