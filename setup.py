@@ -1,3 +1,4 @@
+#Just for win executable
 from cx_Freeze import setup, Executable
 import os, sys
 include_files = [ './templates',
