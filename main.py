@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from models import *
-
+#iniciando app
 app = Flask(__name__)
 
 #Pagina inicial
