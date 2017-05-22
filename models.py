@@ -57,6 +57,3 @@ def inserir_cliente(nome, cnpj, email, endereco, estado, cep):
         cur.execute('''INSERT INTO clientes (nome, cnpj, email ,endereco, estado, cep) VALUES  (?,?,?,?,?,?)''',
                     (nome, cnpj, email, endereco, estado, cep))
         conn.commit()
-
-
-criar_tabela_laudos()
