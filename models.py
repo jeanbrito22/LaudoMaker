@@ -58,3 +58,4 @@ def inserir_cliente(nome, cnpj, email, endereco, estado, cep):
                     (nome, cnpj, email, endereco, estado, cep))
         conn.commit()
 
+#no more create_tables
