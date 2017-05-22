@@ -58,5 +58,3 @@ def inserir_cliente(nome, cnpj, email, endereco, estado, cep):
                     (nome, cnpj, email, endereco, estado, cep))
         conn.commit()
 
-
-criar_tabela_laudos()
