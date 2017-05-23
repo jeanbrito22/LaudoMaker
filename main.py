@@ -91,4 +91,4 @@ def getFormLaudo():
 	<script>alert("Dados enviados com sucesso.");</script>'''
 
 if __name__ == '__main__':
-    app.run(host='localhost', debug=True)
+    app.run(host='localhost', debug=True, threaded=True)
