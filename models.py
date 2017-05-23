@@ -15,6 +15,7 @@ def inserir_cliente(nome, cnpj, email, endereco, estado, cep):
         cur.execute('''INSERT INTO clientes (nome, cnpj, email ,endereco, estado, cep) VALUES  (?,?,?,?,?,?)''',
                     (nome, cnpj, email, endereco, estado, cep))
         conn.commit()
+<<<<<<< HEAD
 
 def selecionar_cnpjs():
     cnpjs = []
@@ -25,3 +26,5 @@ def selecionar_cnpjs():
         for cnpj in result:
             cnpjs.append(cnpj[0])
         return cnpjs
+=======
+>>>>>>> a611a67c12c08054beb2461868cbd9e38742207a
