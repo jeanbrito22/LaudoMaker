@@ -8,6 +8,29 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+#Funcoes para o cadastro
+
+@app.route("/cadastrar", methods=['GET', 'POST'])
+def cadastroPage():
+    estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA',
+    'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']
+    return render_template("cadastro.html", ufs = estados)
+
+@app.route('/cadastro-success', methods=['GET', 'POST'])
+def getFormCadastro():
+    nome = request.form['cliente']
+    cnpj = request.form['cnpj']
+    email = request.form['email']
+    endereco = request.form['endereco']
+    estado = request.form['estado']
+    cep = request.form['cep']
+    
+    inserir_cliente(nome, cnpj, email, endereco, estado, cep)
+    
+    return '''<head><meta http-equiv="refresh" content="0; url=http://localhost:5000/"/></head>
+<script>alert("Dados enviados com sucesso.");</script>'''
+
+
 #Funcoes para o laudo
 @app.route("/laudo")
 def laudoPage():
@@ -61,34 +84,11 @@ def getFormLaudo():
             classePraga = request.form['classe_praga']
 
 
-    inserir_laudo(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, conservacaoEmbalagem, opcaoPragas,
+    inserir_laudo(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, 		conservacaoEmbalagem, opcaoPragas,
      nivelIdentificacao, classePraga, ordemPraga, familiaPraga, generoPraga, especiePraga, nomePopular, conclusao)
 
     return '''<head><meta http-equiv="refresh" content="0; url=http://localhost:5000/"/></head>
-<script>alert("Dados enviados com sucesso.");</script>'''
-
-#Funcoes para o cadastro
-
-@app.route("/cadastrar", methods=['GET', 'POST'])
-def cadastroPage():
-    estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA',
-    'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']
-    return render_template("cadastro.html", ufs = estados)
-
-@app.route('/cadastro-success', methods=['GET', 'POST'])
-def getFormCadastro():
-    nome = request.form['cliente']
-    cnpj = request.form['cnpj']
-    email = request.form['email']
-    endereco = request.form['endereco']
-    estado = request.form['estado']
-    cep = request.form['cep']
-    
-    inserir_cliente(nome, cnpj, email, endereco, estado, cep)
-    
-    return '''<head><meta http-equiv="refresh" content="0; url=http://localhost:5000/"/></head>
-<script>alert("Dados enviados com sucesso.");</script>'''
-
+	<script>alert("Dados enviados com sucesso.");</script>'''
 
 if __name__ == '__main__':
     app.run(host='localhost', debug=True)
