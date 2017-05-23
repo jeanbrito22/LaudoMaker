@@ -4,8 +4,8 @@ def inserir_laudo(cnpj, produto, quantidade, chamado, embalagem, estado, conserv
  classe, ordem, familia, genero, especie, nomePopular, conclusao):
     with sql.connect("database.db") as conn:
         cur = conn.cursor()
-        cur.execute('''INSERT INTO laudos (cnpj, produto, quantidade, chamado, embalagem, conservacao, estado, praga, identificacao, classe, ordem, familia, genero, especie, nomePopular, conclusao)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?)''', (cnpj, produto, quantidade, chamado, embalagem, estado, conservacao, praga, identificacao, classe, ordem, familia, genero, especie, nomePopular, conclusao))
+        cur.execute('''INSERT INTO laudos (cnpj, produto, quantidade, chamado, embalagem, estado,  conservacao, praga, identificacao, classe, ordem, familia, genero, especie, nomePopular, conclusao)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (cnpj, produto, quantidade, chamado, embalagem, estado, conservacao, praga, identificacao, classe, ordem, familia, genero, especie, nomePopular, conclusao))
         conn.commit()
     
 

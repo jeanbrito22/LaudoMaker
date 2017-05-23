@@ -61,7 +61,8 @@ def getFormLaudo():
             classePraga = request.form['classe_praga']
 
 
-    inserir_laudo(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, conservacaoEmbalagem, opcaoPragas, nivelIdentificacao, nomePopular, conclusao)
+    inserir_laudo(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, conservacaoEmbalagem, opcaoPragas,
+     nivelIdentificacao, classePraga, ordemPraga, familiaPraga, generoPraga, especiePraga, nomePopular, conclusao)
 
     return '''<head><meta http-equiv="refresh" content="0; url=http://localhost:5000/"/></head>
 <script>alert("Dados enviados com sucesso.");</script>'''
