@@ -134,5 +134,7 @@ $(document).ready(function(){
 		    //Se a validação der certo, mostre a mensagem de sucesso.
             .on('success.form.bv', function(e) {
                 $('#success_message').slideDown({ opacity: "show" }, "slow")
+                $('#info_form').data('bootstrapValidator').resetForm();
+                e.preventDefault();
         });
 });

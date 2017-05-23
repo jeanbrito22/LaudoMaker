@@ -24,11 +24,13 @@ def getFormCadastro():
     endereco = request.form['endereco']
     estado = request.form['estado']
     cep = request.form['cep']
+
+    if not nome:
+        return render_template('500.html'),500
     
     inserir_cliente(nome, cnpj, email, endereco, estado, cep)
-    
     return '''<head><meta http-equiv="refresh" content="0; url=http://localhost:5000/"/></head>
-<script>alert("Dados enviados com sucesso.");</script>'''
+        <script>alert("Dados enviados com sucesso.");</script>'''
 
 
 #Funcoes para o laudo
@@ -91,4 +93,4 @@ def getFormLaudo():
 	<script>alert("Dados enviados com sucesso.");</script>'''
 
 if __name__ == '__main__':
-    app.run(host='localhost', debug=True, threaded=True)
+    app.run(host='localhost', use_reloader=False, threaded=True)

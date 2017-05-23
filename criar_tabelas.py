@@ -42,3 +42,5 @@ conclusao text not null
 );
 """)
 
+criar_tabela_clientes()
+criar_tabela_laudos()
