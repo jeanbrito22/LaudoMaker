@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap-theme.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrapValidator.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
 </head>
 
@@ -46,13 +47,19 @@
             <fieldset>
                 <!-- Nome do form -->
                 <legend>Informações da análise.</legend>
-                <!-- Nome do cliente -->
+                <!-- CNPJ do cliente -->
                 <div class="form-group">
                     <label class="col-md-4 control-label">CNPJ do cliente</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input  name="cnpj" placeholder="CNPJ do cliente" class="form-control" type="text">
+                            <select name="cnpj" class="form-control selectpicker" data-live-search="true">
+                            <option vale="">Digite o CNPJ</option>
+                            {% for cnpj in cnpjs %}
+                            <option data-tokens="{{cnpj}}">{{cnpj}}</option>
+                            {% endfor %}
+                            </select>
+
                         </div>
                     </div>
                 </div>
@@ -236,6 +243,8 @@
     <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.1.1.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrapValidator.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/laudo-script.js')}}"></script>
 
     </div>

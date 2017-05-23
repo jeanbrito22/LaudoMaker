@@ -58,4 +58,12 @@ def inserir_cliente(nome, cnpj, email, endereco, estado, cep):
                     (nome, cnpj, email, endereco, estado, cep))
         conn.commit()
 
-#no more create_tables
+def selecionar_cnpjs():
+    cnpjs = []
+    with sql.connect("database.db") as conn:
+        cur = conn.cursor()
+        cur.execute("SELECT cnpj FROM clientes")
+        result = cur.fetchall()
+        for cnpj in result:
+            cnpjs.append(cnpj[0])
+        return cnpjs

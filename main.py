@@ -11,7 +11,8 @@ def index():
 #Funcoes para o laudo
 @app.route("/laudo")
 def laudoPage():
-    return render_template("laudo.html")
+    cnpjs = selecionar_cnpjs()
+    return render_template("laudo.html", cnpjs = cnpjs)
 
 @app.route('/laudo-success', methods=['POST'])
 def getFormLaudo():
