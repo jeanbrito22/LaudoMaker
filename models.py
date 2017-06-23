@@ -7,7 +7,7 @@ def inserir_laudo(cnpj, produto, quantidade, chamado, embalagem, estado, conserv
         cur.execute('''INSERT INTO laudos (cnpj, produto, quantidade, chamado, embalagem, estado,  conservacao, praga, identificacao, classe, ordem, familia, genero, especie, nomePopular, conclusao)
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (cnpj, produto, quantidade, chamado, embalagem, estado, conservacao, praga, identificacao, classe, ordem, familia, genero, especie, nomePopular, conclusao))
         conn.commit()
-    
+
 
 def inserir_cliente(nome, cnpj, email, endereco, estado, cep):
     with sql.connect("database.db") as conn:
@@ -25,3 +25,34 @@ def selecionar_cnpjs():
         for cnpj in result:
             cnpjs.append(cnpj[0])
         return cnpjs
+
+def checar_cliente(cnpj):
+    string = "SELECT cnpj FROM clientes WHERE cnpj = %s" %cnpj
+    with sql.connect("database.db") as conn:
+        cur = conn.cursor()
+        result = cur.execute(string)
+        try:
+            cnpj = result.fetchall()[0][0]
+            return True
+        except IndexError:
+            return False
+
+def deletar_cliente(cnpj):
+    string = "DELETE FROM clientes WHERE cnpj = %s" %cnpj
+    with sql.connect("database.db") as conn:
+        cur = conn.cursor()
+        result = cur.execute(string)
+        conn.commit()
+
+
+def checar_chamado(chamado):
+    string = "SELECT chamado FROM laudos WHERE chamado = %s" %chamado
+    with sql.connect("database.db") as conn:
+        cur = conn.cursor()
+        result = cur.execute(string)
+        try:
+            cnpj = result.fetchall()[0][0]
+            return True
+        except IndexError:
+            return False
+

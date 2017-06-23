@@ -25,11 +25,16 @@ def getFormCadastro():
     estado = request.form['estado']
     cep = request.form['cep']
 
+    checkCnpj = checar_cliente(cnpj)
+
     if not nome:
         return render_template('500.html'),500
-    
+
+    if checkCnpj:
+        return '''<head><meta http-equiv="refresh" content="0; url=http://127.0.0.1:5000/"/></head>
+        <script>alert("Operacao impossivel, CNPJ ja cadastrado!");</script>'''
     inserir_cliente(nome, cnpj, email, endereco, estado, cep)
-    return '''<head><meta http-equiv="refresh" content="0; url=http://localhost:5000/"/></head>
+    return '''<head><meta http-equiv="refresh" content="0; url=http://127.0.0.1:5000/"/></head>
         <script>alert("Dados enviados com sucesso.");</script>'''
 
 
@@ -58,6 +63,7 @@ def getFormLaudo():
     nomePopular = 'N/A'
     conclusao = request.form['comentario']
 
+    checkChamado = checar_chamado(nChamado)
 
     if opcaoEmbalagem == 'Sim':
         estadoEmbalagem = request.form['estado_embalagem']
@@ -69,10 +75,10 @@ def getFormLaudo():
 
         if nivelIdentificacao == 'Nome popular':
             nomePopular = request.form['nome_praga']
-        
+
         elif nivelIdentificacao == 'Especie':
             especiePraga = request.form['especie_praga']
-        
+
         elif nivelIdentificacao == 'Genero':
             generoPraga = request.form['genero_praga']
 
@@ -86,11 +92,32 @@ def getFormLaudo():
             classePraga = request.form['classe_praga']
 
 
-    inserir_laudo(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, 		conservacaoEmbalagem, opcaoPragas,
+    if (checkChamado):
+        return '''<head><meta http-equiv="refresh" content="0; url=http://127.0.0.1:5000/"/></head>
+    <script>alert("Operação impossível ! chamado ja cadastrado.");</script>'''
+
+    inserir_laudo(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, conservacaoEmbalagem, opcaoPragas,
      nivelIdentificacao, classePraga, ordemPraga, familiaPraga, generoPraga, especiePraga, nomePopular, conclusao)
 
-    return '''<head><meta http-equiv="refresh" content="0; url=http://localhost:5000/"/></head>
+    return '''<head><meta http-equiv="refresh" content="0; url=http://127.0.0.1:5000/"/></head>
 	<script>alert("Dados enviados com sucesso.");</script>'''
 
+#Funcoes para a exclusao de clientes
+@app.route("/deletar-cliente", methods = ['GET', 'POST'])
+def deletarPage():
+    return render_template("deletar.html")
+
+@app.route("/deletar-success", methods = ['GET', 'POST'])
+def deletarSucessPage():
+    cnpj = request.form['cnpj']
+    checkCnpj = checar_cliente(cnpj)
+    if checkCnpj:
+        deletar_cliente(cnpj)
+        return '''<head><meta http-equiv="refresh" content="0; url=http://127.0.0.1:5000/"/></head>
+	<script>alert("Cliente deletado com sucesso.");</script>'''
+
+    return '''<head><meta http-equiv="refresh" content="0; url=http://127.0.0.1:5000/"/></head>
+	<script>alert("Operação impossível! CNPJ não encontrado");</script>'''
+
 if __name__ == '__main__':
-    app.run(host='localhost', use_reloader=False, threaded=True)
+    app.run(use_reloader=False, threaded=True)
