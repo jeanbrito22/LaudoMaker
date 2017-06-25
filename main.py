@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from models import *
+from report import *
 #iniciando app
 app = Flask(__name__)
 
@@ -62,7 +63,7 @@ def getFormLaudo():
     especiePraga = 'N/A'
     nomePopular = 'N/A'
     conclusao = request.form['comentario']
-
+    conteudoIdentificacao = ''
     checkChamado = checar_chamado(nChamado)
 
     if opcaoEmbalagem == 'Sim':
@@ -75,21 +76,27 @@ def getFormLaudo():
 
         if nivelIdentificacao == 'Nome popular':
             nomePopular = request.form['nome_praga']
+            conteudoIdentificacao = nomePopular
 
         elif nivelIdentificacao == 'Especie':
             especiePraga = request.form['especie_praga']
+            conteudoIdentificacao = especiePraga
 
         elif nivelIdentificacao == 'Genero':
             generoPraga = request.form['genero_praga']
+            conteudoIdentificacao = generoPraga
 
         elif nivelIdentificacao == 'Familia':
             familiaPraga = request.form['familia_praga']
+            conteudoIdentificacao = familiaPraga
 
         elif nivelIdentificacao == 'Ordem':
             ordemPraga = request.form['ordem_praga']
+            conteudoIdentificacao = ordemPraga
 
         else:
             classePraga = request.form['classe_praga']
+            conteudoIdentificacao = classePraga
 
 
     if (checkChamado):
@@ -98,6 +105,11 @@ def getFormLaudo():
 
     inserir_laudo(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, conservacaoEmbalagem, opcaoPragas,
      nivelIdentificacao, classePraga, ordemPraga, familiaPraga, generoPraga, especiePraga, nomePopular, conclusao)
+
+    criar_pasta('Relatorios')
+
+    criar_relatorio(cnpj, produto, qtProduto, nChamado, opcaoEmbalagem, estadoEmbalagem, conservacaoEmbalagem, opcaoPragas,
+     nivelIdentificacao, conteudoIdentificacao)
 
     return '''<head><meta http-equiv="refresh" content="0; url=http://127.0.0.1:5000/"/></head>
 	<script>alert("Dados enviados com sucesso.");</script>'''
