@@ -55,4 +55,3 @@ def checar_chamado(chamado):
             return True
         except IndexError:
             return False
-
