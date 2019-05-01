@@ -3,7 +3,6 @@ from cx_Freeze import setup, Executable
 import os, sys
 include_files = [ './templates',
                   './static',
-                  'database.db',
                   os.path.join(sys.base_prefix, 'DLLs', 'sqlite3.dll'),
                   'models.py']
 
